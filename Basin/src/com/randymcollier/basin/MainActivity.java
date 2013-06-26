@@ -16,7 +16,7 @@ public class MainActivity extends FragmentActivity {
 
 	private static final int SPLASH = 0;
 	private static final int SELECTION = 1;
-	private static final int FRAGMENT_COUNT = SELECTION +1;
+	private static final int FRAGMENT_COUNT = 2;
 
 	private Fragment[] fragments = new Fragment[FRAGMENT_COUNT];
 	
@@ -38,6 +38,9 @@ public class MainActivity extends FragmentActivity {
 	    
 	    setContentView(R.layout.activity_main);
 	    
+	    uiHelper = new UiLifecycleHelper(this, callback);
+	    uiHelper.onCreate(savedInstanceState);
+	    
 //	 // start Facebook Login
 //	    Session.openActiveSession(this, true, new Session.StatusCallback() {
 //
@@ -57,9 +60,6 @@ public class MainActivity extends FragmentActivity {
 	        transaction.hide(fragments[i]);
 	    }
 	    transaction.commit();
-	    
-	    uiHelper = new UiLifecycleHelper(this, callback);
-	    uiHelper.onCreate(savedInstanceState);
 	}
 	
 	private void showFragment(int fragmentIndex, boolean addToBackStack) {
@@ -93,10 +93,10 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-		showToast("State has changed.");
+		//showToast("State has changed.");
 	    // Only make changes if the activity is visible
 	    if (isResumed) {
-	    	showToast("Activity is visible.");
+	    	//showToast("Activity is visible.");
 	        FragmentManager manager = getSupportFragmentManager();
 	        // Get the number of entries in the back stack
 	        int backStackSize = manager.getBackStackEntryCount();
@@ -105,12 +105,12 @@ public class MainActivity extends FragmentActivity {
 	            manager.popBackStack();
 	        }
 	        if (state.isOpened()) {
-	        	showToast("State is open.");
+	        	//showToast("State is open.");
 	            // If the session state is open:
 	            // Show the authenticated fragment
 	            showFragment(SELECTION, false);
 	        } else if (state.isClosed()) {
-	        	showToast("State is closed.");
+	        	//showToast("State is closed.");
 	            // If the session state is closed:
 	            // Show the login fragment
 	            showFragment(SPLASH, false);
@@ -136,9 +136,10 @@ public class MainActivity extends FragmentActivity {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		//showToast("onActivityResult");
 	    super.onActivityResult(requestCode, resultCode, data);
-	    //uiHelper.onActivityResult(requestCode, resultCode, data);
-	    Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+	    uiHelper.onActivityResult(requestCode, resultCode, data);
+	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
 	}
 
 	@Override
