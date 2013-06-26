@@ -31,6 +31,7 @@
             android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
+            android:layout_marginBottom="35dp"
             android:lines="2"
             android:textSize="17sp"
             android:textColor="#FF9900"
@@ -43,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="35dp" />
     
     <TextView
             android:id="@+id/promise"
