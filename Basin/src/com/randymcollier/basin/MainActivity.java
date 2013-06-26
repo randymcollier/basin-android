@@ -8,9 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
+import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
 
 public class MainActivity extends FragmentActivity {
 
@@ -26,9 +29,20 @@ public class MainActivity extends FragmentActivity {
 	private Session.StatusCallback callback = 
 	    new Session.StatusCallback() {
 	    @Override
-	    public void call(Session session, 
-	            SessionState state, Exception exception) {
-	        onSessionStateChange(session, state, exception);
+	    public void call(Session session, SessionState state, Exception exception) {
+	    	onSessionStateChange(session, state, exception);
+	    	if (session.isOpened()) {
+	    		// make request to the /me API
+	    		Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+
+	    		  // callback after Graph API response with user object
+	    		  @Override
+	    		  public void onCompleted(GraphUser user, Response response) {
+	    			  showFragment(SELECTION, false);
+	    			  showToast("Welcome " + user.getName() + "!");
+	    		  }
+	    		});
+	    	}
 	    }
 	};
 	
