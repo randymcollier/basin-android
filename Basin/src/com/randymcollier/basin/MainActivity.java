@@ -108,7 +108,7 @@ public class MainActivity extends FragmentActivity {
 	            manager.popBackStack();
 	        }
 	        if (state.isOpened()) {
-	        	showToast("State is open.");
+	        	//showToast("State is open.");
 	            // If the session state is open:
 	            // Show the authenticated fragment
 	        	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
@@ -123,7 +123,7 @@ public class MainActivity extends FragmentActivity {
 	        		});
 	            //showFragment(SELECTION, false);
 	        } else if (state.isClosed()) {
-	        	showToast("State is closed.");
+	        	//showToast("State is closed.");
 	            // If the session state is closed:
 	            // Show the login fragment
 	            showFragment(SPLASH, false);
@@ -140,7 +140,6 @@ public class MainActivity extends FragmentActivity {
 	    Session session = Session.getActiveSession();
 
 	    if (session != null && session.isOpened()) {
-	    	showToast("State is open.");
 	        // if the session is already open,
 	        // try to show the selection fragment
 	    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
@@ -153,10 +152,8 @@ public class MainActivity extends FragmentActivity {
       			  tv_welcome.setText("Welcome " + user.getName() + "!\nUsername: " + user.getUsername());
       		  }
       		});
-	    		showFragment(SELECTION, false);
-			  
+	        //showFragment(SELECTION, false);
 	    } else {
-	    	showToast("State is closed.");
 	        // otherwise present the splash screen
 	        // and ask the person to login.
 	        showFragment(SPLASH, false);
