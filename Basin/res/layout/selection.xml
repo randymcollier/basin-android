@@ -2,7 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#303040" >
+    
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="35dp"
+        android:textColor="#FF9900"
+        android:textSize="24sp"
+        android:typeface="serif"
+        android:textStyle="italic"
+        android:text="Welcome" />
     
 
 </LinearLayout>

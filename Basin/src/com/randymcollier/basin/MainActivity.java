@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Request;
@@ -31,18 +32,6 @@ public class MainActivity extends FragmentActivity {
 	    @Override
 	    public void call(Session session, SessionState state, Exception exception) {
 	    	onSessionStateChange(session, state, exception);
-	    	if (session.isOpened()) {
-	    		// make request to the /me API
-	    		Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-
-	    		  // callback after Graph API response with user object
-	    		  @Override
-	    		  public void onCompleted(GraphUser user, Response response) {
-	    			  showFragment(SELECTION, false);
-	    			  showToast("Welcome " + user.getName() + "!");
-	    		  }
-	    		});
-	    	}
 	    }
 	};
 	
@@ -122,12 +111,25 @@ public class MainActivity extends FragmentActivity {
 	        	//showToast("State is open.");
 	            // If the session state is open:
 	            // Show the authenticated fragment
-	            showFragment(SELECTION, false);
+	        	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+
+	        		  // callback after Graph API response with user object
+	        		  @Override
+	        		  public void onCompleted(GraphUser user, Response response) {
+	        			  showFragment(SELECTION, false);
+	        			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
+	        			  tv_welcome.setText("Welcome " + user.getName() + "!");
+	        		  }
+	        		});
+	            //showFragment(SELECTION, false);
 	        } else if (state.isClosed()) {
 	        	//showToast("State is closed.");
 	            // If the session state is closed:
 	            // Show the login fragment
 	            showFragment(SPLASH, false);
+	            if (session.isOpened()) {
+		    		// make request to the /me API
+		    	}
 	        }
 	    }
 	}
@@ -140,7 +142,17 @@ public class MainActivity extends FragmentActivity {
 	    if (session != null && session.isOpened()) {
 	        // if the session is already open,
 	        // try to show the selection fragment
-	        showFragment(SELECTION, false);
+	    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+
+      		  // callback after Graph API response with user object
+      		  @Override
+      		  public void onCompleted(GraphUser user, Response response) {
+      			  showFragment(SELECTION, false);
+      			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
+      			  tv_welcome.setText("Welcome " + user.getName() + "!\nUsername: " + user.getUsername());
+      		  }
+      		});
+	        //showFragment(SELECTION, false);
 	    } else {
 	        // otherwise present the splash screen
 	        // and ask the person to login.
