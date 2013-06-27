@@ -50,35 +50,25 @@ public class MainActivity extends FragmentActivity {
 	    super.onCreate(savedInstanceState);
 	    
 	 // Add code to print out the key hash
-	    try {
-	        PackageInfo info = getPackageManager().getPackageInfo(
-	                "com.randymcollier.basin", 
-	                PackageManager.GET_SIGNATURES);
-	        for (Signature signature : info.signatures) {
-	            MessageDigest md = MessageDigest.getInstance("SHA");
-	            md.update(signature.toByteArray());
-	            Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-	            }
-	    } catch (NameNotFoundException e) {
-
-	    } catch (NoSuchAlgorithmException e) {
-
-	    }
+//	    try {
+//	        PackageInfo info = getPackageManager().getPackageInfo(
+//	                "com.randymcollier.basin", 
+//	                PackageManager.GET_SIGNATURES);
+//	        for (Signature signature : info.signatures) {
+//	            MessageDigest md = MessageDigest.getInstance("SHA1");
+//	            md.update(signature.toByteArray());
+//	            showToast("KeyHash:" + Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//	            }
+//	    } catch (NameNotFoundException e) {
+//
+//	    } catch (NoSuchAlgorithmException e) {
+//
+//	    }
 	    
 	    setContentView(R.layout.activity_main);
 	    
 	    uiHelper = new UiLifecycleHelper(this, callback);
 	    uiHelper.onCreate(savedInstanceState);
-	    
-//	 // start Facebook Login
-//	    Session.openActiveSession(this, true, new Session.StatusCallback() {
-//
-//	      // callback when session changes state
-//	      @Override
-//	      public void call(Session session, SessionState state, Exception exception) {
-//
-//	      }
-//	    });
 
 	    FragmentManager fm = getSupportFragmentManager();
 	    fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
@@ -133,26 +123,8 @@ public class MainActivity extends FragmentActivity {
 	        for (int i = 0; i < backStackSize; i++) {
 	            manager.popBackStack();
 	        }
-//	        if (count < 1) {
-//	        	count++;
-//        		showFragment(SPLASH, false);
-//	        }
-//	        else {
-//		    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-//
-//		      		  // callback after Graph API response with user object
-//		      		  @Override
-//		      		  public void onCompleted(GraphUser user, Response response) {
-//		      			  if (session.isOpened()) {
-//		      			  showFragment(SELECTION, false);
-//		      			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
-//		      			  tv_welcome.setText("Welcome!!");
-//		      			  }
-//		      		  }
-//		      		});
-//	        }
 	        if (state.isOpened()) {
-	        	showToast("State is open.");
+	        	//showToast("State is open.");
 	            // If the session state is open:
 	            // Show the authenticated fragment
 	        	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
@@ -160,14 +132,15 @@ public class MainActivity extends FragmentActivity {
 	        		  // callback after Graph API response with user object
 	        		  @Override
 	        		  public void onCompleted(GraphUser user, Response response) {
-	        			  showFragment(SELECTION, false);
+	        			  
 	        			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
 	        			  tv_welcome.setText("Welcome " + user.getName() + "!");
+	        			  showFragment(SELECTION, false);
 	        		  }
 	        		});
 	            //showFragment(SELECTION, false);
 	        } else if (state.isClosed()) {
-	        	showToast("State is closed.");
+	        	//showToast("State is closed.");
 	            // If the session state is closed:
 	            // Show the login fragment
 	            showFragment(SPLASH, false);
@@ -179,26 +152,9 @@ public class MainActivity extends FragmentActivity {
 	protected void onResumeFragments() {
 	    super.onResumeFragments();
 	    Session session = Session.getActiveSession();
-	    
-//	    if (count < 1) {
-//        	count++;
-//    		showFragment(SPLASH, false);
-//        }
-//        else {
-//	    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-//
-//	      		  // callback after Graph API response with user object
-//	      		  @Override
-//	      		  public void onCompleted(GraphUser user, Response response) {
-//	      			  showFragment(SELECTION, false);
-//	      			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
-//	      			  tv_welcome.setText("Welcome!!");
-//	      		  }
-//	      		});
-//        }
 
 	    if (session != null && session.isOpened()) {
-	    	showToast("session open and not null");
+	    	//showToast("session open and not null");
 	        // if the session is already open,
 	        // try to show the selection fragment
 	    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
@@ -206,14 +162,15 @@ public class MainActivity extends FragmentActivity {
       		  // callback after Graph API response with user object
       		  @Override
       		  public void onCompleted(GraphUser user, Response response) {
-      			  showFragment(SELECTION, false);
+      			  
       			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
-      			  tv_welcome.setText("Welcome " + user.getName() + "!\nUsername: " + user.getUsername());
+      			  tv_welcome.setText("Welcome " + user.getName());
+      			  showFragment(SELECTION, false);
       		  }
       		});
 	        showFragment(SELECTION, false);
 	    } else {
-	    	showToast("session is closed");
+	    	//showToast("session is closed");
 	        // otherwise present the splash screen
 	        // and ask the person to login.
 	        showFragment(SPLASH, false);
@@ -222,7 +179,7 @@ public class MainActivity extends FragmentActivity {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		showToast("onActivityResult");
+		//showToast("onActivityResult");
 	    super.onActivityResult(requestCode, resultCode, data);
 	    uiHelper.onActivityResult(requestCode, resultCode, data);
 	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
@@ -236,7 +193,7 @@ public class MainActivity extends FragmentActivity {
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		showToast("onSaveInstanceState");
+		//showToast("onSaveInstanceState");
 	    super.onSaveInstanceState(outState);
 	    uiHelper.onSaveInstanceState(outState);
 	}

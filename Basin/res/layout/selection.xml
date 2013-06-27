@@ -15,8 +15,7 @@
         android:textColor="#FF9900"
         android:textSize="24sp"
         android:typeface="serif"
-        android:textStyle="italic"
-        android:text="Welcome" />
+        android:textStyle="italic" />
     
 
 </LinearLayout>
