@@ -7,5 +7,9 @@
     <string name="app_id">625946570751903</string>
     <string name="get_started">To get started, log in using Facebook</string>
     <string name="promise">We promise to never post anything to your Facebook account!</string>
+    <string name="title_activity_product_view">ProductView</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
 </resources>

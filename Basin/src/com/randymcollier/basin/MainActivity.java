@@ -127,18 +127,18 @@ public class MainActivity extends FragmentActivity {
 	        	//showToast("State is open.");
 	            // If the session state is open:
 	            // Show the authenticated fragment
-	        	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-
-	        		  // callback after Graph API response with user object
-	        		  @Override
-	        		  public void onCompleted(GraphUser user, Response response) {
-	        			  
-	        			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
-	        			  tv_welcome.setText("Welcome " + user.getName() + "!");
-	        			  showFragment(SELECTION, false);
-	        		  }
-	        		});
-	            //showFragment(SELECTION, false);
+//	        	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+//
+//	        		  // callback after Graph API response with user object
+//	        		  @Override
+//	        		  public void onCompleted(GraphUser user, Response response) {
+//	        			  
+//	        			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
+//	        			  tv_welcome.setText("Welcome " + user.getName() + "!");
+//	        			  showFragment(SELECTION, false);
+//	        		  }
+//	        		});
+	            showFragment(SELECTION, false);
 	        } else if (state.isClosed()) {
 	        	//showToast("State is closed.");
 	            // If the session state is closed:
@@ -157,17 +157,17 @@ public class MainActivity extends FragmentActivity {
 	    	//showToast("session open and not null");
 	        // if the session is already open,
 	        // try to show the selection fragment
-	    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-
-      		  // callback after Graph API response with user object
-      		  @Override
-      		  public void onCompleted(GraphUser user, Response response) {
-      			  
-      			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
-      			  tv_welcome.setText("Welcome " + user.getName());
-      			  showFragment(SELECTION, false);
-      		  }
-      		});
+//	    	Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+//
+//      		  // callback after Graph API response with user object
+//      		  @Override
+//      		  public void onCompleted(GraphUser user, Response response) {
+//      			  
+//      			  TextView tv_welcome = (TextView) findViewById(R.id.welcome);
+//      			  tv_welcome.setText("Welcome " + user.getName());
+//      			  showFragment(SELECTION, false);
+//      		  }
+//      		});
 	        showFragment(SELECTION, false);
 	    } else {
 	    	//showToast("session is closed");
