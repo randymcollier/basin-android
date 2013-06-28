@@ -1,4 +1,4 @@
-package com.randymcollier.basin;
+package android.OnSwipeTouchListener;
 
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;

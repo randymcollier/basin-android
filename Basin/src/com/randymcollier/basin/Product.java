@@ -1,7 +1,6 @@
 package com.randymcollier.basin;
 
-import java.util.Random;
-
+import android.OnSwipeTouchListener.OnSwipeTouchListener;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
