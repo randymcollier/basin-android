@@ -30,8 +30,28 @@ public class Product extends Activity {
 		setImage();
 		
 		setOnClickListeners();
+		
+		setOnTouchListener();
 	}
 	
+	private void setOnTouchListener() {
+		image.setOnTouchListener(new OnSwipeTouchListener() {
+		    public void onSwipeTop() {
+		    }
+		    public void onSwipeRight() {
+		    	showToast("You like this item.");
+				setImage();
+		    }
+		    public void onSwipeLeft() {
+		    	showToast("You don't like this item.");
+				setImage();
+		    }
+		    public void onSwipeBottom() {
+		    }
+		});
+		
+	}
+
 	private void setImage() {
 		image.setImageResource(min_drawable + (int)(Math.random() * ((max_drawable - min_drawable) + 1)));
 	}
