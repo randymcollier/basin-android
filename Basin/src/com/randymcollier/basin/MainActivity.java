@@ -28,9 +28,8 @@ import com.facebook.model.GraphUser;
 public class MainActivity extends FragmentActivity {
 
 	private static final int SPLASH = 0;
-	private static final int SELECTION = 1;
-	private static final int FRAGMENT_COUNT = 2;
-	private static int count = 0;
+	private static final int FRAGMENT_COUNT = 1;
+	static int count;
 
 	private Fragment[] fragments = new Fragment[FRAGMENT_COUNT];
 	
@@ -48,6 +47,8 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    
+	    count = 0;
 	    
 	 // Add code to print out the key hash
 //	    try {
@@ -72,7 +73,6 @@ public class MainActivity extends FragmentActivity {
 
 	    FragmentManager fm = getSupportFragmentManager();
 	    fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
-	    fragments[SELECTION] = fm.findFragmentById(R.id.selectionFragment);
 	    
 	    FragmentTransaction transaction = fm.beginTransaction();
 	    for(int i = 0; i < fragments.length; i++) {
@@ -124,6 +124,9 @@ public class MainActivity extends FragmentActivity {
 	            manager.popBackStack();
 	        }
 	        if (state.isOpened()) {
+	        	Intent i = new Intent("com.randymcollier.basin.Product");
+	        	count++;
+	        	startActivityForResult(i, 1);
 	        	//showToast("State is open.");
 	            // If the session state is open:
 	            // Show the authenticated fragment
@@ -138,7 +141,7 @@ public class MainActivity extends FragmentActivity {
 //	        			  showFragment(SELECTION, false);
 //	        		  }
 //	        		});
-	            showFragment(SELECTION, false);
+	            //showFragment(SELECTION, false);
 	        } else if (state.isClosed()) {
 	        	//showToast("State is closed.");
 	            // If the session state is closed:
@@ -154,6 +157,9 @@ public class MainActivity extends FragmentActivity {
 	    Session session = Session.getActiveSession();
 
 	    if (session != null && session.isOpened()) {
+	    	Intent i = new Intent("com.randymcollier.basin.Product");
+	    	count++;
+	    	startActivityForResult(i, 1);
 	    	//showToast("session open and not null");
 	        // if the session is already open,
 	        // try to show the selection fragment
@@ -168,7 +174,7 @@ public class MainActivity extends FragmentActivity {
 //      			  showFragment(SELECTION, false);
 //      		  }
 //      		});
-	        showFragment(SELECTION, false);
+	        //showFragment(SELECTION, false);
 	    } else {
 	    	//showToast("session is closed");
 	        // otherwise present the splash screen
@@ -179,9 +185,12 @@ public class MainActivity extends FragmentActivity {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//showToast("onActivityResult");
+		//showToast("count is " + count);
 	    super.onActivityResult(requestCode, resultCode, data);
 	    uiHelper.onActivityResult(requestCode, resultCode, data);
+	    if (count >= 1)
+	    	this.finish();
+	    count++;
 	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
 	}
 
@@ -199,7 +208,7 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	public void showToast(String message) {
-		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 	}
 
 }
