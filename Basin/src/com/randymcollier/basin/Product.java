@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Product extends Activity {
 	
-	ImageButton btn_down, btn_up;
-	ImageView image;
+	private ImageButton btn_down, btn_up;
+	private ImageView image;
+	private RelativeLayout layout;
 	
 	static int min_drawable = 0x7f020000;
 	static int max_drawable = 0x7f020025;
@@ -22,9 +24,7 @@ public class Product extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
 		
-		btn_down = (ImageButton) findViewById(R.id.btn_down_vote);
-		btn_up = (ImageButton) findViewById(R.id.btn_up_vote);
-		image = (ImageView) findViewById(R.id.product_image);
+		setComponents();
 		
 		setImage();
 		
@@ -33,8 +33,16 @@ public class Product extends Activity {
 		setOnTouchListener();
 	}
 	
+	private void setComponents() {
+		btn_down = (ImageButton) findViewById(R.id.btn_down_vote);
+		btn_up = (ImageButton) findViewById(R.id.btn_up_vote);
+		image = (ImageView) findViewById(R.id.product_image);
+		layout = (RelativeLayout) findViewById(R.id.product_layout);
+		
+	}
+
 	private void setOnTouchListener() {
-		image.setOnTouchListener(new OnSwipeTouchListener() {
+		layout.setOnTouchListener(new OnSwipeTouchListener() {
 		    public void onSwipeTop() {
 		    }
 		    public void onSwipeRight() {
