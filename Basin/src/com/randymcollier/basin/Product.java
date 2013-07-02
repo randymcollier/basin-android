@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -37,23 +38,30 @@ public class Product extends Activity {
 		btn_down = (ImageButton) findViewById(R.id.btn_down_vote);
 		btn_up = (ImageButton) findViewById(R.id.btn_up_vote);
 		image = (ImageView) findViewById(R.id.product_image);
-		layout = (RelativeLayout) findViewById(R.id.product_layout);
-		
+		layout = (RelativeLayout) findViewById(R.id.product_layout);		
 	}
 
 	private void setOnTouchListener() {
 		layout.setOnTouchListener(new OnSwipeTouchListener() {
-		    public void onSwipeTop() {
-		    }
 		    public void onSwipeRight() {
 		    	showToast("You like this item.");
+		    	TranslateAnimation anim = new TranslateAnimation(-1000, 0, 0, 0);
+				anim.setDuration(50);
+				anim.setFillAfter(true);
+				image.startAnimation(anim);
 				setImage();
 		    }
 		    public void onSwipeLeft() {
 		    	showToast("You don't like this item.");
+		    	TranslateAnimation anim = new TranslateAnimation(1000, 0, 0, 0);
+				anim.setDuration(50);
+				anim.setFillAfter(true);
+				image.startAnimation(anim);
 				setImage();
 		    }
 		    public void onSwipeBottom() {
+		    }
+		    public void onSwipeTop() {
 		    }
 		});
 		
