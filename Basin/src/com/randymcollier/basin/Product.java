@@ -86,7 +86,7 @@ public class Product extends Activity {
 	}
 
 	public void showToast(String message) {
-		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 	}
 
 }
