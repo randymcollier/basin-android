@@ -17,8 +17,8 @@ public class Product extends Activity {
 	private ImageView image;
 	private RelativeLayout layout;
 	
-	static int min_drawable = 0x7f020000;
-	static int max_drawable = 0x7f020025;
+	static int min_drawable = 0x7f020023;
+	static int max_drawable = 0x7f02004e;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
