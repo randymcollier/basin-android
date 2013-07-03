@@ -37,13 +37,22 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />
 
-        <activity android:name="com.randymcollier.basin.Product"
+        <activity
+            android:name="com.randymcollier.basin.Product"
             android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="com.randymcollier.basin.Product" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.randymcollier.basin.Profile"
+            android:configChanges="orientation|screenSize" >
+            <intent-filter>
+                <action android:name="com.randymcollier.basin.Profile" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

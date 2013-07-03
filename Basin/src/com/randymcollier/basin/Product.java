@@ -2,7 +2,11 @@ package com.randymcollier.basin;
 
 import android.OnSwipeTouchListener.OnSwipeTouchListener;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.TranslateAnimation;
@@ -17,8 +21,11 @@ public class Product extends Activity {
 	private ImageView image;
 	private RelativeLayout layout;
 	
-	static int min_drawable = 0x7f020023;
-	static int max_drawable = 0x7f02004e;
+	static final int MIN_DRAWABLE = 0x7f020021;
+	static final int MAX_DRAWABLE = 0x7f02004b;
+	
+	int current_drawable;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +75,8 @@ public class Product extends Activity {
 	}
 
 	private void setImage() {
-		image.setImageResource(min_drawable + (int)(Math.random() * ((max_drawable - min_drawable) + 1)));
+		current_drawable = MIN_DRAWABLE + (int)(Math.random() * ((MAX_DRAWABLE - MIN_DRAWABLE) + 1));
+		image.setImageResource(current_drawable);
 	}
 
 	private void setOnClickListeners() {
@@ -95,6 +103,26 @@ public class Product extends Activity {
 
 	public void showToast(String message) {
 		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.profile:
+	        	Intent i = new Intent("com.randymcollier.basin.Profile");
+	            startActivity(i);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 
 }
