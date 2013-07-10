@@ -1,9 +1,15 @@
 package com.randymcollier.basin;
 
+import java.io.InputStream;
+
 import android.OnSwipeTouchListener.OnSwipeTouchListener;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import java.net.URL;
 
 public class Product extends Activity {
 	
@@ -26,11 +33,17 @@ public class Product extends Activity {
 	
 	int current_drawable;
 	
+	static final String URL = "http://192.168.1.103/basin/images/";
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
+		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+		StrictMode.setThreadPolicy(policy);
 		
 		setComponents();
 		
@@ -75,8 +88,20 @@ public class Product extends Activity {
 	}
 
 	private void setImage() {
-		current_drawable = MIN_DRAWABLE + (int)(Math.random() * ((MAX_DRAWABLE - MIN_DRAWABLE) + 1));
-		image.setImageResource(current_drawable);
+		//current_drawable = MIN_DRAWABLE + (int)(Math.random() * ((MAX_DRAWABLE - MIN_DRAWABLE) + 1));
+		current_drawable = 1 + (int) (Math.random() * ((41 - 1) + 1));
+		try {
+			//Bitmap bitmap = BitmapImageLoader.loadBitmap(URL);
+		//image.setImageResource(current_drawable);
+			//image.setImageBitmap(bitmap);
+			
+			URL newurl = new URL(URL + current_drawable);
+			Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
+			image.setImageBitmap(mIcon_val);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	private void setOnClickListeners() {
@@ -123,6 +148,17 @@ public class Product extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private Drawable loadImageFromWebOperations(String url) {
+		try {
+			InputStream is = (InputStream) new URL(url).getContent();
+			Drawable d = Drawable.createFromStream(is, "src name");
+			return d;
+		}catch (Exception e) {
+			System.out.println("Exc="+e);
+			return null;
+		}
 	}
 
 }

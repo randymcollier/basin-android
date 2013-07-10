@@ -22,3 +22,5 @@ local.properties
 .DS_Store
 Basin/.DS_Store
 Basin/project.properties
+Basin/res/.DS_Store
+Basin/src/.DS_Store
