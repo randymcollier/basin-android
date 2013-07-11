@@ -1,5 +1,7 @@
 package com.randymcollier.basin;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import android.OnSwipeTouchListener.OnSwipeTouchListener;
@@ -8,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -21,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class Product extends Activity {
 	
@@ -33,16 +37,15 @@ public class Product extends Activity {
 	
 	int current_drawable;
 	
-	static final String URL = "http://192.168.1.103/basin/images/";
-	
+	static final String URL = "http://192.168.1.103/basin/images/";	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
 		
+		//allows for the network connection to be performed in the main thread
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
 		StrictMode.setThreadPolicy(policy);
 		
 		setComponents();
@@ -92,9 +95,13 @@ public class Product extends Activity {
 		current_drawable = 1 + (int) (Math.random() * ((41 - 1) + 1));
 		try {
 			//Bitmap bitmap = BitmapImageLoader.loadBitmap(URL);
-		//image.setImageResource(current_drawable);
+			//image.setImageResource(current_drawable);
 			//image.setImageBitmap(bitmap);
 			
+			//async function to set image
+			//setImageURL(URL + current_drawable);
+			
+			//sets image to bitmap retrieved from url
 			URL newurl = new URL(URL + current_drawable);
 			Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
 			image.setImageBitmap(mIcon_val);
@@ -150,15 +157,42 @@ public class Product extends Activity {
 	    }
 	}
 	
-	private Drawable loadImageFromWebOperations(String url) {
-		try {
-			InputStream is = (InputStream) new URL(url).getContent();
-			Drawable d = Drawable.createFromStream(is, "src name");
-			return d;
-		}catch (Exception e) {
-			System.out.println("Exc="+e);
-			return null;
-		}
+	//async setting the bitmap
+	public void setImageURL(final String url) {
+	        new AsyncTask<Void, Void, Bitmap>() {
+	            protected Bitmap doInBackground(Void... p) {
+	                Bitmap bm = null;
+	                try {
+	                    URL aURL = new URL(url);
+	                    URLConnection conn = aURL.openConnection();
+	                    conn.setUseCaches(true);
+	                    conn.connect();
+	                    InputStream is = conn.getInputStream();
+	                    BufferedInputStream bis = new BufferedInputStream(is);
+	                    bm = BitmapFactory.decodeStream(bis);
+	                    bis.close();
+	                    is.close();
+	                } catch(IOException e) {
+	                    e.printStackTrace();
+	                }
+
+	                if(bm == null) {
+	                    return null;
+	                }
+	                return bm;
+	            }
+
+	            protected void onPostExecute(Bitmap bmp) {
+	                if(bmp == null) {
+	                    return;
+	                }
+	                setImageBitmap(bmp);
+	            }
+	        }.execute();
+	}
+
+	private void setImageBitmap(Bitmap bitmap) {
+		image.setImageBitmap(bitmap);
 	}
 
 }
