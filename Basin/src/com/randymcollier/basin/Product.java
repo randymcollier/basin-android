@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import android.OnSwipeTouchListener.OnSwipeTouchListener;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,7 +27,7 @@ import android.widget.Toast;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class Product extends Activity {
+public class Product<ProfileGridView> extends Activity {
 	
 	private ImageButton btn_down, btn_up;
 	private ImageView image;
@@ -68,18 +69,18 @@ public class Product extends Activity {
 		layout.setOnTouchListener(new OnSwipeTouchListener() {
 		    public void onSwipeRight() {
 		    	showToast("You like this item.");
-		    	TranslateAnimation anim = new TranslateAnimation(-1000, 0, 0, 0);
-				anim.setDuration(50);
-				anim.setFillAfter(true);
-				image.startAnimation(anim);
+//		    	TranslateAnimation anim = new TranslateAnimation(-1000, 0, 0, 0);
+//				anim.setDuration(50);
+//				anim.setFillAfter(true);
+//				image.startAnimation(anim);
 				setImage();
 		    }
 		    public void onSwipeLeft() {
 		    	showToast("You don't like this item.");
-		    	TranslateAnimation anim = new TranslateAnimation(1000, 0, 0, 0);
-				anim.setDuration(50);
-				anim.setFillAfter(true);
-				image.startAnimation(anim);
+//		    	TranslateAnimation anim = new TranslateAnimation(1000, 0, 0, 0);
+//				anim.setDuration(50);
+//				anim.setFillAfter(true);
+//				image.startAnimation(anim);
 				setImage();
 		    }
 		    public void onSwipeBottom() {
@@ -99,12 +100,12 @@ public class Product extends Activity {
 			//image.setImageBitmap(bitmap);
 			
 			//async function to set image
-			//setImageURL(URL + current_drawable);
+			setImageURL(URL + current_drawable);
 			
 			//sets image to bitmap retrieved from url
-			URL newurl = new URL(URL + current_drawable);
-			Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
-			image.setImageBitmap(mIcon_val);
+//			URL newurl = new URL(URL + current_drawable);
+//			Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
+//			image.setImageBitmap(mIcon_val);
 		}
 		catch (Exception e) {
 			System.out.println(e);
@@ -159,6 +160,7 @@ public class Product extends Activity {
 	
 	//async setting the bitmap
 	public void setImageURL(final String url) {
+		final ProgressDialog dialog = new ProgressDialog(Product.this);
 	        new AsyncTask<Void, Void, Bitmap>() {
 	            protected Bitmap doInBackground(Void... p) {
 	                Bitmap bm = null;
@@ -181,11 +183,23 @@ public class Product extends Activity {
 	                }
 	                return bm;
 	            }
+	            
+	            protected void onPreExecute() {
+	            	dialog.setMessage("Loading image...");
+	                dialog.show();
+	            }
 
 	            protected void onPostExecute(Bitmap bmp) {
 	                if(bmp == null) {
 	                    return;
 	                }
+	                dialog.dismiss();
+	                try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	                setImageBitmap(bmp);
 	            }
 	        }.execute();
