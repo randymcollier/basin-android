@@ -55,6 +55,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.randymcollier.basin.SplashActivity"
+            android:configChanges="orientation|screenSize" >
+            <intent-filter>
+                <action android:name="com.randymcollier.basin.SplashActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

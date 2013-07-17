@@ -3,6 +3,8 @@ package com.randymcollier.basin;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import android.OnSwipeTouchListener.OnSwipeTouchListener;
 import android.app.Activity;
@@ -10,26 +12,24 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class Product<ProfileGridView> extends Activity {
 	
-	private ImageButton btn_down, btn_up;
+	private Button btn_pass;
 	private ImageView image;
 	private RelativeLayout layout;
 	
@@ -63,11 +63,12 @@ public class Product<ProfileGridView> extends Activity {
 		setOnClickListeners();
 		
 		setOnTouchListener();
+		
+		current_drawable = 0;
 	}
 	
 	private void setComponents() {
-		btn_down = (ImageButton) findViewById(R.id.btn_down_vote);
-		btn_up = (ImageButton) findViewById(R.id.btn_up_vote);
+		btn_pass = (Button) findViewById(R.id.btn_pass);
 		image = (ImageView) findViewById(R.id.product_image);
 		layout = (RelativeLayout) findViewById(R.id.product_layout);		
 	}
@@ -75,7 +76,7 @@ public class Product<ProfileGridView> extends Activity {
 	private void setOnTouchListener() {
 		layout.setOnTouchListener(new OnSwipeTouchListener() {
 		    public void onSwipeRight() {
-		    	//showToast("You like this item.");
+		    	showToast("Like");
 //		    	TranslateAnimation anim = new TranslateAnimation(-1000, 0, 0, 0);
 //				anim.setDuration(50);
 //				anim.setFillAfter(true);
@@ -83,7 +84,7 @@ public class Product<ProfileGridView> extends Activity {
 				setImage();
 		    }
 		    public void onSwipeLeft() {
-		    	//showToast("You don't like this item.");
+		    	showToast("Dislike");
 //		    	TranslateAnimation anim = new TranslateAnimation(1000, 0, 0, 0);
 //				anim.setDuration(50);
 //				anim.setFillAfter(true);
@@ -91,8 +92,12 @@ public class Product<ProfileGridView> extends Activity {
 				setImage();
 		    }
 		    public void onSwipeBottom() {
+		    	showToast("Pass");
+		    	setImage();
 		    }
 		    public void onSwipeTop() {
+		    	showToast("Pass");
+		    	setImage();
 		    }
 		});
 		
@@ -100,7 +105,10 @@ public class Product<ProfileGridView> extends Activity {
 
 	private void setImage() {
 		//current_drawable = MIN_DRAWABLE + (int)(Math.random() * ((MAX_DRAWABLE - MIN_DRAWABLE) + 1));
-		current_drawable = 1 + (int) (Math.random() * ((107 - 1) + 1));
+		//current_drawable = 1 + (int) (Math.random() * ((107 - 1) + 1));
+		current_drawable = (current_drawable + 3) % 107;
+		if (current_drawable == 6)
+			current_drawable++;
 		try {
 			//Bitmap bitmap = BitmapImageLoader.loadBitmap(URL);
 			//image.setImageResource(current_drawable);
@@ -120,21 +128,11 @@ public class Product<ProfileGridView> extends Activity {
 	}
 
 	private void setOnClickListeners() {
-		btn_down.setOnClickListener(new OnClickListener() {
+		btn_pass.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				//showToast("You don't like this item.");
-				setImage();
-			}
-			
-		});
-		
-		btn_up.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				//showToast("You like this item.");
+				showToast("Pass");
 				setImage();
 			}
 			
@@ -142,7 +140,15 @@ public class Product<ProfileGridView> extends Activity {
 	}
 
 	public void showToast(String message) {
-		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+		final Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+		toast.show();
+		Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+           @Override
+           public void run() {
+               toast.cancel(); 
+           }
+        }, 500);
 	}
 	
 	@Override
@@ -174,6 +180,7 @@ public class Product<ProfileGridView> extends Activity {
 	                try {
 	                    URL aURL = new URL(url);
 	                    URLConnection conn = aURL.openConnection();
+	                    //conn.setConnectTimeout(5000);
 	                    conn.setUseCaches(true);
 	                    conn.connect();
 	                    InputStream is = conn.getInputStream();
