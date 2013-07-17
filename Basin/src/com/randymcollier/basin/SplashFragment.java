@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class SplashFragment extends Fragment {
-	/**
-	 * TODO: Threading necessary for start up process.
-	 */
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
 	        ViewGroup container, Bundle savedInstanceState) {
