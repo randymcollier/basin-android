@@ -38,7 +38,14 @@ public class Product<ProfileGridView> extends Activity {
 	
 	int current_drawable;
 	
-	static final String URL = "http://192.168.1.103/basin/images/";	
+	//Cameron's house
+	//static final String URL = "http://192.168.0.20/basin/images/";	
+	
+	//Randy's house
+	//static final String URL = "http://192.168.1.3/basin/images/";
+	
+	//New domain
+	static final String URL = "http://www.sodaservices.com/basin/images/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +75,7 @@ public class Product<ProfileGridView> extends Activity {
 	private void setOnTouchListener() {
 		layout.setOnTouchListener(new OnSwipeTouchListener() {
 		    public void onSwipeRight() {
-		    	showToast("You like this item.");
+		    	//showToast("You like this item.");
 //		    	TranslateAnimation anim = new TranslateAnimation(-1000, 0, 0, 0);
 //				anim.setDuration(50);
 //				anim.setFillAfter(true);
@@ -76,7 +83,7 @@ public class Product<ProfileGridView> extends Activity {
 				setImage();
 		    }
 		    public void onSwipeLeft() {
-		    	showToast("You don't like this item.");
+		    	//showToast("You don't like this item.");
 //		    	TranslateAnimation anim = new TranslateAnimation(1000, 0, 0, 0);
 //				anim.setDuration(50);
 //				anim.setFillAfter(true);
@@ -93,7 +100,7 @@ public class Product<ProfileGridView> extends Activity {
 
 	private void setImage() {
 		//current_drawable = MIN_DRAWABLE + (int)(Math.random() * ((MAX_DRAWABLE - MIN_DRAWABLE) + 1));
-		current_drawable = 1 + (int) (Math.random() * ((41 - 1) + 1));
+		current_drawable = 1 + (int) (Math.random() * ((107 - 1) + 1));
 		try {
 			//Bitmap bitmap = BitmapImageLoader.loadBitmap(URL);
 			//image.setImageResource(current_drawable);
@@ -117,7 +124,7 @@ public class Product<ProfileGridView> extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				showToast("You don't like this item.");
+				//showToast("You don't like this item.");
 				setImage();
 			}
 			
@@ -127,7 +134,7 @@ public class Product<ProfileGridView> extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				showToast("You like this item.");
+				//showToast("You like this item.");
 				setImage();
 			}
 			
@@ -195,9 +202,8 @@ public class Product<ProfileGridView> extends Activity {
 	                }
 	                dialog.dismiss();
 	                try {
-						Thread.sleep(500);
+						Thread.sleep(150);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 	                setImageBitmap(bmp);
