@@ -15,9 +15,11 @@ import android.content.Intent;
  * This class will display a splash screen that will appear for a developer/company logo on start up.
  * 
  * Added code to account for if your logo or start up splash is a gif rather than an image.  GifMovieView will play the gif after content view is set.
- * Problems with playing gif as a movie: Movie-class is not able to deal with every type of animated GIFs. 
+ * As GifMovieView: Movie-class is not able to deal with every type of animated GIFs. 
  * 			For some formats, the first frame will be drawn well but every other won’t. So when you walk this route, make sure your GIFs are displayed correctly.
- * 
+ * As GifWebView: More reliable Because WebKit is already implemented native, it’s memory footprint is really low, especially when compared to a bitmap decoding method. 
+ * 			Operations on images like scaling can be performed simply by using HTML and code is small. Has a smaller target user group since webview is best for Android 2.2+(which soon will
+ * 			be everyone anyway.
  */
 public class SplashActivity extends Activity {
 
@@ -36,8 +38,8 @@ public class SplashActivity extends Activity {
 		//setContentView(view);
 		
 		//Web gif:
-		//view = new GifWebView(this, "file:///android_asset/splashlogo.gif");
-		//setContentView(view);
+		view = new GifWebView(this, "file:///android_asset/splashlogo.gif");
+		setContentView(view);
 		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added
 		handler = new Handler();
 	}
