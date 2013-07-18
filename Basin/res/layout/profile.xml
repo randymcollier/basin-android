@@ -18,20 +18,12 @@
         android:layout_marginTop="15dp"
         android:text="User Profile" />
 
-    <Button
-        android:id="@+id/dislikes"
-        android:layout_width="wrap_content"
+    <ListView 
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/profile_title"
-        android:layout_centerVertical="true"
-        android:text="Dislikes" />
-
-    <Button
-        android:id="@+id/likes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/dislikes"
-        android:layout_alignRight="@+id/profile_title"
-        android:text="Likes" />
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/profile_title" >
+    </ListView>
 
 </RelativeLayout>

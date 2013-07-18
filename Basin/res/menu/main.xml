@@ -1,7 +1,5 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <item android:id="@+id/profile"
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/profile_menu"
           android:title="@string/profile"
-          android:showAsAction="ifRoom"/>
-
+          android:showAsAction="ifRoom|withText" />
 </menu>
