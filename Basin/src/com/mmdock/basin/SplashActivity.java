@@ -40,7 +40,7 @@ public class SplashActivity extends Activity {
 		//Web gif:
 		view = new GifWebView(this, "file:///android_asset/splashlogo.gif");
 		setContentView(view);
-		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added
+		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added. This is for a simple image splash logo.
 		handler = new Handler();
 	}
 	
