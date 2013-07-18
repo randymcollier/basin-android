@@ -1,5 +1,8 @@
 package com.mmdock.basin;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -10,19 +13,32 @@ import android.content.Intent;
  * @author Morgan Dock
  * 
  * This class will display a splash screen that will appear for a developer/company logo on start up.
+ * 
+ * Added code to account for if your logo or start up splash is a gif rather than an image.  GifMovieView will play the gif after content view is set.
+ * Problems with playing gif as a movie: Movie-class is not able to deal with every type of animated GIFs. 
+ * 			For some formats, the first frame will be drawn well but every other won’t. So when you walk this route, make sure your GIFs are displayed correctly.
+ * 
  */
 public class SplashActivity extends Activity {
 
 	private Handler handler;
 	private Thread thread;
+	//gif as Movie: 
+	GifMovieView view;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//setContentView(R.layout.splash);  //This is needed, but splash needs to be added
+		//Movie gif:
+		view = view.initGifMovieView(this, "splashlogo.gif");
+		setContentView(view);
+		//Movie gif:
+		//view = view.initGifMovieView(this, "splashlogo.gif");
+		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added
 		handler = new Handler();
 	}
+	
 
 	@Override
 	protected void onResume() {
