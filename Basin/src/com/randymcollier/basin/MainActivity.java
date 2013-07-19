@@ -46,20 +46,20 @@ public class MainActivity extends FragmentActivity {
 	    count = 0;
 	    
 	 // Add code to print out the key hash
-	    try {
-	        PackageInfo info = getPackageManager().getPackageInfo(
-	                "com.randymcollier.basin", 
-	                PackageManager.GET_SIGNATURES);
-	        for (Signature signature : info.signatures) {
-	            MessageDigest md = MessageDigest.getInstance("SHA1");
-	            md.update(signature.toByteArray());
-	            showToast("KeyHash:" + Base64.encodeToString(md.digest(), Base64.DEFAULT));
-	            }
-	    } catch (NameNotFoundException e) {
+//	    try {
+//	        PackageInfo info = getPackageManager().getPackageInfo(
+//	                "com.randymcollier.basin", 
+//	                PackageManager.GET_SIGNATURES);
+//	        for (Signature signature : info.signatures) {
+//	            MessageDigest md = MessageDigest.getInstance("SHA1");
+//	            md.update(signature.toByteArray());
+//	            showToast("KeyHash:" + Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//	            }
+//	    } catch (NameNotFoundException e) {
+//
+//	    } catch (NoSuchAlgorithmException e) {
 
-	    } catch (NoSuchAlgorithmException e) {
-
-	    }
+//	    }
 	    
 	    setContentView(R.layout.activity_main);
 	    
