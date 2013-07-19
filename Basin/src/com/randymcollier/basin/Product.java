@@ -46,7 +46,7 @@ public class Product extends Activity {
 	//static final String URL = "http://192.168.1.3/basin/images/";
 	
 	//New domain
-	static final String URL = "http://www.sodaservices.com/basin/images/";
+	static final String URL = "http://www.sodaservices.com/basin/images/0/0/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,9 @@ public class Product extends Activity {
 		layout.setOnTouchListener(new OnSwipeTouchListener() {
 		    public void onSwipeRight() {
 		    	showToast("Like");
-		    	db.addOpinion("like", String.valueOf(current_drawable));
+		    	if (!db.isAdded(String.valueOf(current_drawable))) {
+		    		db.addOpinion("like", String.valueOf(current_drawable));
+		    	}
 //		    	TranslateAnimation anim = new TranslateAnimation(-1000, 0, 0, 0);
 //				anim.setDuration(50);
 //				anim.setFillAfter(true);
@@ -90,7 +92,9 @@ public class Product extends Activity {
 		    }
 		    public void onSwipeLeft() {
 		    	showToast("Dislike");
-		    	db.addOpinion("dislike", String.valueOf(current_drawable));
+		    	if (!db.isAdded(String.valueOf(current_drawable))) {
+		    		db.addOpinion("dislike", String.valueOf(current_drawable));
+		    	}
 //		    	TranslateAnimation anim = new TranslateAnimation(1000, 0, 0, 0);
 //				anim.setDuration(50);
 //				anim.setFillAfter(true);

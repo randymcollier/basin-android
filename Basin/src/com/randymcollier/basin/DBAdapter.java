@@ -2,9 +2,6 @@
 
 package com.randymcollier.basin;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -88,6 +85,19 @@ public class DBAdapter {
 		args.put("opinion", opinion);
 		args.put("resource", resource);
 		return db.insert("opinions", null, args);
+	}
+	
+	public boolean isAdded(String resource) {
+		String query = "SELECT * FROM opinions WHERE resource = '" + resource + "';";
+		Cursor c = db.rawQuery(query, null);
+		boolean isAdded;
+		if (c.getCount() == 0) {
+			isAdded = false;
+		}
+		else {
+			isAdded = true;
+		}
+		return isAdded;
 	}
 	
 	public void checkUpgrade() {
