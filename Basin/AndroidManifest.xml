@@ -15,11 +15,25 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
+        <activity 
+            android:name=".SplashActivity" 
+            android:noHistory="true" 
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+    		<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        		<category android:name="android.intent.category.LAUNCHER" />
+    		</intent-filter>
+		</activity>
         <activity
             android:name="com.randymcollier.basin.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
+<<<<<<< HEAD
                 <action android:name="com.randymcollier.basin.MainActivity" />
+=======
+                <action android:name="android.intent.action.MainActivity" />
+>>>>>>> 702b50459899d83cc9e7504a6dbe8b8805defcf7
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -55,6 +69,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity
             android:name="com.randymcollier.basin.SplashActivity"
             android:configChanges="orientation|screenSize" >
@@ -64,6 +79,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+        
+>>>>>>> 702b50459899d83cc9e7504a6dbe8b8805defcf7
     </application>
 
 </manifest>

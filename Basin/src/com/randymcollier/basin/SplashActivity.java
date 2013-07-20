@@ -46,7 +46,7 @@ public class SplashActivity extends Activity {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(5000);//Wait 5 seconds
+					Thread.sleep(3000);//Wait 3 seconds
 					handler.post(new Runnable() {
 						public void run() {
 							goToNextScreen();
@@ -69,14 +69,14 @@ public class SplashActivity extends Activity {
 		startActivityForResult(intent, 1);
 	}
 	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//showToast("count is " + count);
-	    super.onActivityResult(requestCode, resultCode, data);
-	    if (count >= 1)
-	    	this.finish();
-	    count++;
-	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-	}
+//	@Override
+//	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		//showToast("count is " + count);
+//	    super.onActivityResult(requestCode, resultCode, data);
+//	    if (count >= 1)
+//	    	this.finish();
+//	    count++;
+//	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+//	}
 
 }

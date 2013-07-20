@@ -1,11 +1,19 @@
 package com.randymcollier.basin;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
 import android.widget.Toast;
 
 import com.facebook.Session;
@@ -50,7 +58,7 @@ public class MainActivity extends FragmentActivity {
 //	    } catch (NameNotFoundException e) {
 //
 //	    } catch (NoSuchAlgorithmException e) {
-//
+
 //	    }
 	    
 	    setContentView(R.layout.activity_main);
