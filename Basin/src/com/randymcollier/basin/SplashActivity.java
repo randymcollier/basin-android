@@ -33,7 +33,7 @@ public class SplashActivity extends Activity {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(5000);//Wait 5 seconds
+					Thread.sleep(3000);//Wait 3 seconds
 					handler.post(new Runnable() {
 						public void run() {
 							goToNextScreen();
