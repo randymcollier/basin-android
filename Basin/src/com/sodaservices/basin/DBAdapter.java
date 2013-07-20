@@ -1,6 +1,6 @@
 // This class is the communication medium to the database.
 
-package com.randymcollier.basin;
+package com.sodaservices.basin;
 
 import android.content.ContentValues;
 import android.content.Context;

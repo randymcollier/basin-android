@@ -1,10 +1,11 @@
-package com.randymcollier.basin;
+package com.sodaservices.basin;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 import android.app.Activity;
 import android.content.Intent;
+import com.sodaservices.basin.R;
 
 /**
  * @author Morgan Dock
@@ -51,7 +52,7 @@ public class SplashActivity extends Activity {
 	 * Proceed to the Menu
 	 */
 	protected void goToNextScreen() {
-		Intent intent = new Intent(this, com.randymcollier.basin.MainActivity.class);
+		Intent intent = new Intent(this, com.sodaservices.basin.MainActivity.class);
 		startActivity(intent);
 	}
 	

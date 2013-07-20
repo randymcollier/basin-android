@@ -1,4 +1,4 @@
-package com.randymcollier.basin;
+package com.sodaservices.basin;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import com.sodaservices.basin.R;
 
 public class Product extends Activity {
 	
@@ -224,7 +225,7 @@ public class Product extends Activity {
 	    switch(item.getItemId())
 	    {
 	    case R.id.profile_menu:
-	    	Intent i = new Intent("com.randymcollier.basin.Profile");
+	    	Intent i = new Intent("com.sodaservices.basin.Profile");
 	    	startActivity(i);
 	        break;
 	    }

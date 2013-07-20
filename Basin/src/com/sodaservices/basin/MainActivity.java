@@ -1,4 +1,4 @@
-package com.randymcollier.basin;
+package com.sodaservices.basin;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.sodaservices.basin.R;
 
 public class MainActivity extends FragmentActivity {
 
@@ -48,7 +49,7 @@ public class MainActivity extends FragmentActivity {
 	 // Add code to print out the key hash
 //	    try {
 //	        PackageInfo info = getPackageManager().getPackageInfo(
-//	                "com.randymcollier.basin", 
+//	                "com.sodaservices.basin", 
 //	                PackageManager.GET_SIGNATURES);
 //	        for (Signature signature : info.signatures) {
 //	            MessageDigest md = MessageDigest.getInstance("SHA1");
@@ -119,7 +120,7 @@ public class MainActivity extends FragmentActivity {
 	            manager.popBackStack();
 	        }
 	        if (state.isOpened()) {
-	        	Intent i = new Intent("com.randymcollier.basin.Product");
+	        	Intent i = new Intent("com.sodaservices.basin.Product");
 	        	count++;
 	        	startActivityForResult(i, 1);
 	        	//showToast("State is open.");
@@ -152,7 +153,7 @@ public class MainActivity extends FragmentActivity {
 	    Session session = Session.getActiveSession();
 
 	    if (session != null && session.isOpened()) {
-	    	Intent i = new Intent("com.randymcollier.basin.Product");
+	    	Intent i = new Intent("com.sodaservices.basin.Product");
 	    	count++;
 	    	startActivityForResult(i, 1);
 	    	//showToast("session open and not null");

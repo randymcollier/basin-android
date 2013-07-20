@@ -1,4 +1,4 @@
-package com.randymcollier.basin;
+package com.sodaservices.basin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.sodaservices.basin.R;
 
 public class Profile extends Activity {
 
