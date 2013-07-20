@@ -55,14 +55,14 @@ public class SplashActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//showToast("count is " + count);
-	    super.onActivityResult(requestCode, resultCode, data);
-	    if (count >= 1)
-	    	this.finish();
-	    count++;
-	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-	}
+//	@Override
+//	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		//showToast("count is " + count);
+//	    super.onActivityResult(requestCode, resultCode, data);
+//	    if (count >= 1)
+//	    	this.finish();
+//	    count++;
+//	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+//	}
 
 }
