@@ -18,7 +18,7 @@
         <activity 
             android:name=".SplashActivity" 
             android:noHistory="true" 
-            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
     		<intent-filter>
         		<action android:name="android.intent.action.MAIN" />
