@@ -1,5 +1,7 @@
 package com.randymcollier.basin;
 
+import com.mmdock.basin.GifWebView;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -15,6 +17,9 @@ public class SplashActivity extends Activity {
 
 	private Handler handler;
 	private Thread thread;
+	//gif as Movie: 
+	//GifMovieView view;
+	GifWebView view;
 	static int count;
 
 	@Override
@@ -22,9 +27,17 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		count = 0;
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.intro);  //This is needed, but splash needs to be added
+		//Movie gif:
+		//view = view.initGifMovieView(this, "splashlogo.gif");
+		//setContentView(view);
+		
+		//Web gif:
+		view = new GifWebView(this, "file:///android_asset/splashlogo.gif");
+		setContentView(view);
+		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added. This is for a simple image splash logo.
 		handler = new Handler();
 	}
+	
 
 	@Override
 	protected void onResume() {
@@ -52,7 +65,8 @@ public class SplashActivity extends Activity {
 	 */
 	protected void goToNextScreen() {
 		Intent intent = new Intent(this, com.randymcollier.basin.MainActivity.class);
-		startActivity(intent);
+		count++;
+		startActivityForResult(intent, 1);
 	}
 	
 	@Override
