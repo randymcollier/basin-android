@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.randymcollier.basin"
+    package="com.sodaservices.basin"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity 
-            android:name=".SplashActivity" 
+            android:name="com.sodaservices.basin.SplashActivity" 
             android:noHistory="true" 
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
@@ -26,7 +26,7 @@
     		</intent-filter>
 		</activity>
         <activity
-            android:name="com.randymcollier.basin.MainActivity"
+            android:name="com.sodaservices.basin.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
 <<<<<<< HEAD
@@ -38,9 +38,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.randymcollier.basin.SplashFragment" >
+        <activity android:name="com.sodaservices.basin.SplashFragment" >
             <intent-filter>
-                <action android:name="com.randymcollier.basin.SplashFragment" />
+                <action android:name="com.sodaservices.basin.SplashFragment" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -52,19 +52,19 @@
             android:value="@string/app_id" />
 
         <activity
-            android:name="com.randymcollier.basin.Product"
+            android:name="com.sodaservices.basin.Product"
             android:configChanges="orientation|screenSize" >
             <intent-filter>
-                <action android:name="com.randymcollier.basin.Product" />
+                <action android:name="com.sodaservices.basin.Product" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.randymcollier.basin.Profile"
+            android:name="com.sodaservices.basin.Profile"
             android:configChanges="orientation|screenSize" >
             <intent-filter>
-                <action android:name="com.randymcollier.basin.Profile" />
+                <action android:name="com.sodaservices.basin.Profile" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

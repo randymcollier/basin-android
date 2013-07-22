@@ -1,10 +1,11 @@
-package com.randymcollier.basin;
+package com.sodaservices.basin;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.sodaservices.basin.R;
 
 public class SplashFragment extends Fragment {
 
