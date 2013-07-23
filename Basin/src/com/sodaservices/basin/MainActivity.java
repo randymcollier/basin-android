@@ -116,7 +116,7 @@ public class MainActivity extends FragmentActivity {
 	            manager.popBackStack();
 	        }
 	        if (state.isOpened()) {
-	        	Intent i = new Intent("com.sodaservices.basin.Product");
+	        	Intent i = new Intent(this, com.sodaservices.basin.Product.class);
 	        	startActivityForResult(i, 1);
 	        	//showToast("State is open.");
 	            // If the session state is open:
@@ -148,7 +148,7 @@ public class MainActivity extends FragmentActivity {
 	    Session session = Session.getActiveSession();
 
 	    if (session != null && session.isOpened()) {
-	    	Intent i = new Intent("com.sodaservices.basin.Product");
+	    	Intent i = new Intent(this, com.sodaservices.basin.Product.class);
 	    	startActivityForResult(i, 1);
 	    	//showToast("session open and not null");
 	        // if the session is already open,

@@ -224,7 +224,7 @@ public class Product extends Activity {
 	    switch(item.getItemId())
 	    {
 	    case R.id.profile_menu:
-	    	Intent i = new Intent("com.sodaservices.basin.Profile");
+	    	Intent i = new Intent(this, com.sodaservices.basin.Profile.class);
 	    	startActivity(i);
 	        break;
 	    }
