@@ -17,7 +17,7 @@ public class SplashActivity extends Activity {
 	private Thread thread;
 	//gif as Movie: 
 	//GifMovieView view;
-	GifWebView view;
+	//GifWebView view;
 	static int count;
 
 	@Override
@@ -31,7 +31,7 @@ public class SplashActivity extends Activity {
 		
 		//Web gif:
 		//view = new GifWebView(this, "file:///android_asset/splashlogo.gif");
-		setContentView(view);
+		//setContentView(view);
 		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added. This is for a simple image splash logo.
 		setContentView(R.layout.intro);
 		
