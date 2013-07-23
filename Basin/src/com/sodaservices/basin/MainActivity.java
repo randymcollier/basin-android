@@ -19,13 +19,11 @@ import android.widget.Toast;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
-import com.sodaservices.basin.R;
 
 public class MainActivity extends FragmentActivity {
 
 	private static final int SPLASH = 0;
 	private static final int FRAGMENT_COUNT = 1;
-	static int count;
 
 	private Fragment[] fragments = new Fragment[FRAGMENT_COUNT];
 	
@@ -43,8 +41,6 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    
-	    count = 0;
 	    
 	 // Add code to print out the key hash
 //	    try {
@@ -121,7 +117,6 @@ public class MainActivity extends FragmentActivity {
 	        }
 	        if (state.isOpened()) {
 	        	Intent i = new Intent("com.sodaservices.basin.Product");
-	        	count++;
 	        	startActivityForResult(i, 1);
 	        	//showToast("State is open.");
 	            // If the session state is open:
@@ -154,7 +149,6 @@ public class MainActivity extends FragmentActivity {
 
 	    if (session != null && session.isOpened()) {
 	    	Intent i = new Intent("com.sodaservices.basin.Product");
-	    	count++;
 	    	startActivityForResult(i, 1);
 	    	//showToast("session open and not null");
 	        // if the session is already open,
@@ -179,16 +173,12 @@ public class MainActivity extends FragmentActivity {
 	    }
 	}
 	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//showToast("count is " + count);
-	    super.onActivityResult(requestCode, resultCode, data);
-	    uiHelper.onActivityResult(requestCode, resultCode, data);
-	    if (count >= 1)
-	    	this.finish();
-	    count++;
-	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-	}
+//	@Override
+//	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		//showToast("count is " + count);
+//	    super.onActivityResult(requestCode, resultCode, data);
+//	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+//	}
 
 	@Override
 	public void onDestroy() {
