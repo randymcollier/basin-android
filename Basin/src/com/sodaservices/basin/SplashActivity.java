@@ -15,24 +15,11 @@ public class SplashActivity extends Activity {
 
 	private Handler handler;
 	private Thread thread;
-	//gif as Movie: 
-	//GifMovieView view;
-	//GifWebView view;
-	static int count;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		count = 0;
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//Movie gif:
-		//view = view.initGifMovieView(this, "splashlogo.gif");
-		//setContentView(view);
-		
-		//Web gif:
-		//view = new GifWebView(this, "file:///android_asset/splashlogo.gif");
-		//setContentView(view);
-		//setContentView(R.layout.splashlogo);  //This is needed, but splashlogo needs to be added. This is for a simple image splash logo.
 		setContentView(R.layout.intro);
 		
 		handler = new Handler();
@@ -67,15 +54,4 @@ public class SplashActivity extends Activity {
 		Intent intent = new Intent(this, com.sodaservices.basin.MainActivity.class);
 		startActivity(intent);
 	}
-	
-//	@Override
-//	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		//showToast("count is " + count);
-//	    super.onActivityResult(requestCode, resultCode, data);
-//	    if (count >= 1)
-//	    	this.finish();
-//	    count++;
-//	    //Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-//	}
-
 }
