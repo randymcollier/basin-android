@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#303040"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/likes"
+        android:textColor="#FF9900"
+        android:textSize="55sp"
+        android:textStyle="italic"
+        android:typeface="serif" />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/select_a_channel_below_to_view_likes_"
+        android:textColor="#FF9900"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:typeface="serif" />
+    
+    <ListView 
+        android:id="@+id/list_user_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
+    </ListView>
+
+</LinearLayout>

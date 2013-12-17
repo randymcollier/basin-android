@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#303040"
@@ -7,43 +7,33 @@
     android:id="@+id/product_layout" >
     
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/type"
+        android:layout_weight=".01"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FF9900"
         android:textSize="35sp"
-        android:layout_marginTop="15dp"
-        android:text="Title" />
+        android:layout_marginTop="15dp" />
     
     <ImageView
         android:id="@+id/product_image"
-        android:layout_below="@id/name"
+        android:layout_weight=".08"
         android:layout_width="300dp"
-        android:layout_height="350dp"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/button_border" />
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/button_border"
+        android:contentDescription="@string/image_from_server" />
     
     <TextView
-        android:id="@+id/caption"
+        android:id="@+id/description"
+        android:layout_weight=".01"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:textSize="15sp"
-        android:layout_below="@id/product_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="This is the caption below the image." />
+        android:textColor="#FF9900"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp" />
 
-    <Button
-        android:id="@+id/btn_pass"
-        android:layout_width="75dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/caption"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="#303040"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:text="PASS" />
-
-</RelativeLayout>
+</LinearLayout>

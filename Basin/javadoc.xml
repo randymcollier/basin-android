@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="/Volumes/Fat Man/Android Development/android-sdk-macosx/platforms/android-19/android.jar:/Volumes/Fat Man/Facebook SDK/facebook-android-sdk-3.0.1/facebook/bin/facebooksdk.jar:/Volumes/Fat Man/Facebook SDK/facebook-android-sdk-3.0.1/facebook/libs/android-support-v4.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="com.facebook.android,com.randymcollier.basin,android.OnSwipeTouchListener" source="1.6" sourcepath="src:gen" splitindex="true" use="true" version="true">
+            <link href="file:/Volumes/Fat%20Man/Android%20Development/android-sdk-macosx/docs/reference"/>
+            <link href="file:/Volumes/Fat%20Man/Android%20Development/Basin/doc/"/>
+        </javadoc>
+    </target>
+</project>
