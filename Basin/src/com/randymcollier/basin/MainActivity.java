@@ -19,12 +19,21 @@
 
 package com.randymcollier.basin;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -170,12 +179,32 @@ public class MainActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    
+	    // Print out the key hash
+	    //getFacebookKeyhash();
+	    
 	    uiHelper = new UiLifecycleHelper(this, callback);
 	    uiHelper.onCreate(savedInstanceState);
 
 	    setContentView(R.layout.main);
 	    
 	    initializeFragments();
+	}
+
+	private void getFacebookKeyhash() {
+		try {
+	        PackageInfo info = getPackageManager().getPackageInfo(
+	                "com.randymcollier.basin", 
+	                PackageManager.GET_SIGNATURES);
+	        for (Signature signature : info.signatures) {
+	            MessageDigest md = MessageDigest.getInstance("SHA");
+	            md.update(signature.toByteArray());
+	            Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+	            }
+	    } catch (NameNotFoundException e) {
+
+	    } catch (NoSuchAlgorithmException e) {
+
+	    }
 	}
 	
 	/**
